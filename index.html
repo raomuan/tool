@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具导航</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .description {
+            color: #666;
+            flex: 2;
+        }
+
+        .link {
+            flex: 1;
+            text-align: right;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        a:hover {
+            background-color: #e7f1ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>常用工具导航</h1>
+     
+        <div class="nav-item">
+            <span class="description">迅捷在线压缩 支持word 图片 pdf ppt 文件支持最大20M</span>
+            <span class="link"><a href="https://yasuo.xunjiepdf.com/word/" target="_blank" rel="noopener noreferrer">点击跳转</a></span>
+        </div>
+
+        <div class="nav-item">
+            <span class="description">PDF工具集 支持pdf编辑 合并，压缩 图片转PDF等</span>
+            <span class="link"><a href="https://tools.pdf24.org/zh/" target="_blank" rel="noopener noreferrer">点击跳转</a></span>
+        </div>
+    </div>
+</body>
+</html>
