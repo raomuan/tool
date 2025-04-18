@@ -427,7 +427,7 @@ const config = {
 				{
                     title: "免费接码",
                     url: "https://mianfeijiema.com/",
-                    icon: "https://mianfeijiema.com/favicon.ico",
+                    icon: "https://mianfeijiema.com/static/picture/logo.png",
                     desc: "提供中国、美国、英国等各国免费手机号码短信接收服务，你可以使用我们的免费手机号码注册APP或账号"
                 },
 				{
@@ -489,7 +489,7 @@ const config = {
 				{
                     title: "正则表达式测试",
                     url: "https://regex-vis.com/",
-                    icon: "https://regex-vis.com/favicon.ico",
+                    icon: "https://regex-vis.com/favicon.png",
                     desc: "jetbra破解 全家桶破解"
                 },
             ]
@@ -597,13 +597,13 @@ function initTabs() {
 // 历史记录功能（保持原有逻辑不变）
 let history = JSON.parse(localStorage.getItem('navHistory')) || [];
 
-function addToHistory(url, title) {
+function addToHistory(url, title, icon) {
     const existingIndex = history.findIndex(item => item.url === url);
     if (existingIndex >= 0) {
         const [existingItem] = history.splice(existingIndex, 1);
         history.unshift(existingItem);
     } else {
-        history.unshift({ url, title });
+        history.unshift({ url, title, icon});
     }
     
     if (history.length > 5) history = history.slice(0, 5);
@@ -621,9 +621,10 @@ function updateHistoryDisplay() {
         historyItem.href = item.url;
         historyItem.target = '_blank';
         historyItem.rel = 'noopener noreferrer';
-        historyItem.innerHTML = `
-            <img src="https://www.google.com/s2/favicons?domain=${domain}" 
-                 alt="${domain}" width="16" height="16" style="margin-right:8px;">
+		historyItem.innerHTML = `
+            <img src="${item.icon || 'https://via.placeholder.com/16'}" 
+                 alt="" width="16" height="16" style="margin-right:8px;"
+                 onerror="this.src='https://via.placeholder.com/16'">
             ${item.title}
         `;
         container.appendChild(historyItem);
@@ -634,7 +635,8 @@ function updateHistoryDisplay() {
 function initCards() {
     document.querySelectorAll('.card').forEach(card => {
         card.addEventListener('click', function() {
-            addToHistory(this.href, this.querySelector('.card-title').textContent);
+			const icon = this.querySelector('.card-icon').src;
+            addToHistory(this.href, this.querySelector('.card-title').textContent, icon);
             this.style.transform = 'scale(0.95)';
             setTimeout(() => this.style.transform = '', 200);
         });
