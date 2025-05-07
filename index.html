@@ -596,7 +596,7 @@ function createSections() {
             cardEl.rel = 'noopener noreferrer';
             cardEl.innerHTML = `
                 <div class="card-header">
-                    <img src="${card.icon}" class="card-icon" onerror="this.src='https://via.placeholder.com/40'">
+                    <img src="${card.icon}" class="card-icon">
                     <div class="card-title">${card.title}</div>
                 </div>
                 <div class="card-desc">${card.desc}</div>
@@ -654,9 +654,8 @@ function updateHistoryDisplay() {
         historyItem.target = '_blank';
         historyItem.rel = 'noopener noreferrer';
 		historyItem.innerHTML = `
-            <img src="${item.icon || 'https://via.placeholder.com/16'}" 
-                 alt="" width="16" height="16" style="margin-right:8px;"
-                 onerror="this.src='https://via.placeholder.com/16'">
+            <img src="${item.icon}" 
+                 alt="" width="16" height="16" style="margin-right:8px;"                 
             ${item.title}
         `;
         container.appendChild(historyItem);
