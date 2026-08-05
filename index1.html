@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 导航站 · 国内外网页版 AI 入口大全</title>
+<meta name="description" content="一站式收录国内外主流网页版 AI 工具入口，国内 AI 与海外 AI 清晰分区，点击直达。">
+<style>
+  :root {
+    --bg: #070b14;
+    --bg-soft: #0c1220;
+    --card: rgba(255, 255, 255, 0.045);
+    --card-hover: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.09);
+    --border-hover: rgba(255, 255, 255, 0.22);
+    --text: #e9eef8;
+    --muted: #8f97ab;
+    --china-a: #ff5f6d;
+    --china-b: #ffc371;
+    --global-a: #4facfe;
+    --global-b: #9b8cff;
+    --radius: 16px;
+    --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(1000px 520px at 85% -5%, rgba(99, 102, 241, 0.16), transparent 60%),
+      radial-gradient(900px 480px at -10% 12%, rgba(255, 95, 109, 0.10), transparent 55%),
+      radial-gradient(1100px 600px at 50% 118%, rgba(79, 172, 254, 0.12), transparent 60%),
+      linear-gradient(180deg, #070b14 0%, #0a101f 50%, #070b14 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 20%, transparent 75%);
+  }
+
+  /* ============ 顶部导航 ============ */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(7, 11, 20, 0.72);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 20px;
+    background: linear-gradient(135deg, #6366f1, #a855f7 55%, #ec4899);
+    box-shadow: 0 6px 18px rgba(139, 92, 246, 0.45);
+    color: #fff;
+  }
+  .brand-name { font-size: 18px; font-weight: 700; letter-spacing: 0.5px; }
+  .brand-name small { display: block; font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: 2px; }
+
+  .nav-stats {
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 7px 16px;
+    border-radius: 999px;
+  }
+  .nav-stats b { color: #fff; font-size: 15px; }
+
+  /* ============ Hero ============ */
+  .hero {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 72px 28px 40px;
+    text-align: center;
+  }
+  .hero .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    background: var(--card);
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+    letter-spacing: 1px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 60px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: 1px;
+    background: linear-gradient(120deg, #fff 20%, #c7d2fe 45%, #a5b4fc 60%, #f0abfc 85%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    margin: 18px auto 34px;
+    max-width: 620px;
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  .search-wrap {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--muted);
+    pointer-events: none;
+  }
+  #searchInput {
+    width: 100%;
+    padding: 16px 20px 16px 54px;
+    font-size: 16px;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    outline: none;
+    backdrop-filter: blur(8px);
+    transition: border-color .25s, box-shadow .25s, background .25s;
+  }
+  #searchInput::placeholder { color: #6b7280; }
+  #searchInput:focus {
+    border-color: rgba(139, 92, 246, 0.7);
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.18), 0 12px 34px rgba(0, 0, 0, 0.35);
+  }
+
+  .quick-tags {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .quick-tag {
+    cursor: pointer;
+    user-select: none;
+    font: inherit;
+    font-size: 13px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 7px 16px;
+    border-radius: 999px;
+    transition: all .2s;
+  }
+  .quick-tag:hover { color: #fff; border-color: var(--border-hover); }
+  .quick-tag.active {
+    color: #fff;
+    border-color: rgba(139, 92, 246, 0.75);
+    background: rgba(139, 92, 246, 0.18);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
+  }
+
+  #emptyTip {
+    display: none;
+    max-width: 1240px;
+    margin: 24px auto 0;
+    padding: 34px;
+    text-align: center;
+    color: var(--muted);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+  }
+  #emptyTip.visible { display: block; }
+
+  /* ============ 区块 ============ */
+  main { max-width: 1240px; margin: 0 auto; padding: 0 28px 40px; }
+
+  .region { padding: 34px 0 10px; }
+
+  .region-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 26px;
+  }
+  .region-flag {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .region-title { font-size: 26px; font-weight: 800; letter-spacing: 0.5px; }
+  .region-en {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.75;
+    display: block;
+    font-weight: 500;
+  }
+  .region-count {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .region-divider {
+    height: 1px;
+    margin: 44px 0 4px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+  }
+
+  /* 国内 / 国外 主题色 */
+  .region.china .region-title { color: #ffd9a0; text-shadow: 0 2px 24px rgba(255, 140, 80, 0.35); }
+  .region.china .region-en { color: var(--china-b); }
+  .region.china .sub-head .dot { background: linear-gradient(135deg, var(--china-a), var(--china-b)); box-shadow: 0 0 14px rgba(255, 130, 90, 0.55); }
+  .region.china .card:hover { border-color: rgba(255, 150, 90, 0.55); box-shadow: 0 16px 40px rgba(255, 120, 70, 0.14), var(--shadow); }
+
+  .region.global .region-title { color: #c7d9ff; text-shadow: 0 2px 24px rgba(90, 140, 255, 0.35); }
+  .region.global .region-en { color: var(--global-a); }
+  .region.global .sub-head .dot { background: linear-gradient(135deg, var(--global-a), var(--global-b)); box-shadow: 0 0 14px rgba(90, 150, 255, 0.55); }
+  .region.global .card:hover { border-color: rgba(120, 160, 255, 0.55); box-shadow: 0 16px 40px rgba(100, 140, 255, 0.14), var(--shadow); }
+
+  .sub-group { margin-bottom: 34px; }
+  .sub-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .sub-head .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .sub-head h3 { font-size: 17px; font-weight: 700; letter-spacing: 0.3px; }
+  .sub-head .en { font-size: 12px; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; margin-left: 6px; }
+
+  /* ============ 卡片 ============ */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    transition: transform .22s ease, border-color .22s, box-shadow .22s, background .22s;
+    animation: rise .55s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(340px 120px at 20% -30%, rgba(255, 255, 255, 0.06), transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .25s;
+  }
+  .card:hover { transform: translateY(-5px); background: var(--card-hover); }
+  .card:hover::after { opacity: 1; }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .icon {
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-size: 21px;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .meta { flex: 1; min-width: 0; }
+  .name { font-size: 16px; font-weight: 700; display: flex; align-items: baseline; gap: 8px; }
+  .name .alias { font-size: 12px; font-weight: 500; color: var(--muted); }
+  .desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .foot {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .tag {
+    font-size: 11px;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    padding: 2px 9px;
+    border-radius: 999px;
+    letter-spacing: 0.5px;
+  }
+  .go {
+    font-size: 12px;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color .2s, transform .2s;
+    opacity: 0.75;
+  }
+  .card:hover .go { color: #fff; transform: translateX(2px); }
+
+  /* ============ 页脚 ============ */
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    padding: 30px 28px 44px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    background: rgba(7, 11, 20, 0.6);
+  }
+  footer b { color: #fff; font-weight: 600; }
+
+  #backTop {
+    position: fixed;
+    right: 26px;
+    bottom: 26px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: rgba(20, 26, 42, 0.85);
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: all .25s;
+  }
+  #backTop.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  #backTop:hover { border-color: rgba(139, 92, 246, 0.7); color: #fff; }
+
+  @media (max-width: 640px) {
+    .hero { padding-top: 44px; }
+    .grid { grid-template-columns: 1fr; }
+    .region-count { margin-left: 0; }
+    main, .hero, .nav { padding-left: 18px; padding-right: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#top">
+      <span class="brand-logo">AI</span>
+      <span class="brand-name">AI 导航站<small>AI NAVIGATOR</small></span>
+    </a>
+    <span class="nav-stats">已收录 <b id="totalCount">0</b> 个 AI 入口</span>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <span class="eyebrow">✦ 精选国内外网页版 AI 工具 · 持续更新</span>
+    <h1>一站式 AI 入口导航</h1>
+    <p>国内与海外 AI 工具清晰分区，覆盖对话助手、AI 搜索、编程、图像视频、音乐语音与效率办公，点击卡片即可直达官网。</p>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" type="text" placeholder="搜索 AI 工具，如 DeepSeek、视频、编程…" autocomplete="off">
+    </div>
+    <div class="quick-tags">
+      <button class="quick-tag active" data-filter="all">全部</button>
+      <button class="quick-tag" data-filter="china">🇨🇳 国内 AI</button>
+      <button class="quick-tag" data-filter="global">🌍 海外 AI</button>
+    </div>
+  </section>
+
+  <div id="emptyTip">😶 没有找到匹配的 AI 工具，换个关键词试试～</div>
+
+  <section class="region china" id="region-china">
+    <div class="region-head">
+      <span class="region-flag">🇨🇳</span>
+      <div>
+        <span class="region-title">国内 AI 入口</span>
+        <span class="region-en">China · 国产大模型与工具</span>
+      </div>
+      <span class="region-count" id="count-china">0 个入口</span>
+    </div>
+    <div id="china-subs"></div>
+  </section>
+
+  <div class="region-divider"></div>
+
+  <section class="region global" id="region-global">
+    <div class="region-head">
+      <span class="region-flag">🌍</span>
+      <div>
+        <span class="region-title">海外 AI 入口</span>
+        <span class="region-en">Global · 国际知名 AI 平台</span>
+      </div>
+      <span class="region-count" id="count-global">0 个入口</span>
+    </div>
+    <div id="global-subs"></div>
+  </section>
+</main>
+
+<footer>
+  <p>收集整理，排名不分先后 · 链接如有变动请以各官网为准 · 部分海外服务需科学上网访问</p>
+  <p style="margin-top:6px">Made with <b>❤</b> · AI 导航站 <b>AI NAVIGATOR</b></p>
+</footer>
+
+<button id="backTop" title="回到顶部">↑</button>
+
+<script>
+/* ================= 数据 ================= */
+const chinaSubs = [
+  {
+    title: "对话助手", en: "Chat Assistants",
+    items: [
+      { n: "DeepSeek",     e: "DeepSeek",         d: "深度求索出品，开源大模型新锐，推理与代码能力出众，免费好用", u: "https://chat.deepseek.com/", c: ["#4d6bfe", "#7c3aed"] },
+      { n: "腾讯元宝",     e: "Yuanbao",          d: "腾讯出品全能 AI 助手，支持联网搜索、文档分析与多模态对话", u: "https://yuanbao.tencent.com/", c: ["#0d8cff", "#2ec5fe"] },
+      { n: "豆包",         e: "Doubao",           d: "字节跳动出品，功能全面的 AI 助手，对话、写作、图片一站式", u: "https://www.doubao.com/chat/", c: ["#02a8ff", "#00e5c7"] },
+      { n: "Kimi",         e: "Kimi",             d: "月之暗面出品，超长上下文处理专家，擅长长文档阅读与总结", u: "https://kimi.moonshot.cn/", c: ["#ff5d3a", "#ff9a3d"] },
+      { n: "通义千问",     e: "Tongyi Qianwen",   d: "阿里巴巴出品，全能对话助手，支持多模态与长文本推理", u: "https://www.tongyi.com/", c: ["#615ced", "#8e6cf5"] },
+      { n: "文心一言",     e: "ERNIE Bot",        d: "百度出品，知识增强大模型，中文理解能力扎实", u: "https://yiyan.baidu.com/", c: ["#1e5eff", "#5aa2ff"] },
+      { n: "智谱清言",     e: "GLM Chat",         d: "智谱 AI 出品，GLM 大模型，中文对话与工具调用能力强", u: "https://chatglm.cn/", c: ["#4d7cfe", "#7aa5ff"] },
+      { n: "讯飞星火",     e: "Spark",            d: "科大讯飞出品，语音交互能力出色，支持多模态理解", u: "https://xinghuo.xfyun.cn/", c: ["#007dfc", "#00b8ff"] },
+      { n: "海螺 AI",      e: "Hailuo",           d: "MiniMax 出品，对话与视频生成能力出色，多模态新锐", u: "https://hailuoai.com/", c: ["#a855f7", "#ec4899"] },
+      { n: "天工 AI",      e: "Tiangong",         d: "昆仑万维出品，搜索与对话一体，支持 AI 搜索与写作", u: "https://www.tiangong.cn/", c: ["#10b981", "#34d399"] },
+      { n: "跃问",         e: "Yuewen · Step",    d: "阶跃星辰出品，Step 系列大模型，数学与推理见长", u: "https://yuewen.cn/", c: ["#0ea5e9", "#14b8a6"] },
+      { n: "腾讯混元",     e: "Hunyuan",          d: "腾讯大模型官方入口，多模态理解与中文能力出众", u: "https://hunyuan.tencent.com/", c: ["#0066ff", "#00a8ff"] },
+      { n: "文小言",       e: "Wenxiaoyan",       d: "百度文库 AI 助手，对话、创作与文档处理一站式", u: "https://wenxiaoyan.baidu.com/", c: ["#165dff", "#00c2ff"] }
+    ]
+  },
+  {
+    title: "AI 搜索", en: "AI Search",
+    items: [
+      { n: "秘塔 AI 搜索", e: "Metaso",   d: "无广告的 AI 搜索引擎，答案结构化并附引用来源", u: "https://metaso.cn/", c: ["#0a66ff", "#5b8cff"] },
+      { n: "纳米 AI 搜索", e: "Nano",     d: "360 出品，聚合多模型深度搜索，回答问题清晰", u: "https://www.n.cn/", c: ["#ff5722", "#ff9800"] },
+      { n: "360 AI 搜索",  e: "360 AI",   d: "360 智脑驱动，AI 生成式搜索体验", u: "https://www.360ai.cn/", c: ["#ff3d2e", "#ff7a00"] },
+      { n: "夸克 AI",      e: "Quark",    d: "阿里旗下夸克浏览器 AI 搜索，边搜边问效率高", u: "https://www.quark.cn/", c: ["#2456ff", "#00a6ff"] }
+    ]
+  },
+  {
+    title: "AI 编程", en: "AI Coding",
+    items: [
+      { n: "豆包 MarsCode", e: "MarsCode",       d: "字节跳动出品云端 AI IDE，智能补全、代码解释与对话", u: "https://www.marscode.cn/", c: ["#00c9ff", "#00ffa3"] },
+      { n: "通义灵码",      e: "Lingma",          d: "阿里云出品 AI 编程助手，代码补全与智能问答", u: "https://lingma.aliyun.com/", c: ["#3b82f6", "#6366f1"] },
+      { n: "腾讯 AI 代码助手", e: "Tencent Copilot", d: "腾讯云出品 AI 编程助手，支持代码补全与仓库级理解", u: "https://copilot.tencent.com/", c: ["#0a85ff", "#5ad8ff"] }
+    ]
+  },
+  {
+    title: "AI 创作", en: "Create · Image · Video",
+    items: [
+      { n: "即梦 AI",   e: "Jimeng",  d: "字节跳动出品，AI 图像与视频创作平台，支持文生图/视频", u: "https://jimeng.jianying.com/", c: ["#ff6b2c", "#ff3d8b"] },
+      { n: "可灵 AI",   e: "Kling",   d: "快手出品，领先的 AI 视频生成，支持图生视频与运镜控制", u: "https://klingai.com/", c: ["#5b21b6", "#a855f7"] },
+      { n: "通义万相",  e: "Wanxiang", d: "阿里出品 AI 绘画与图像创作，文生图/图生图", u: "https://tongyi.aliyun.com/wanxiang/", c: ["#8b5cf6", "#c084fc"] },
+      { n: "文心一格",  e: "Yige",     d: "百度出品 AI 艺术创作平台，一键生成画作", u: "https://yige.baidu.com/", c: ["#1e5eff", "#7c6bff"] }
+    ]
+  },
+  {
+    title: "效率办公", en: "Productivity",
+    items: [
+      { n: "通义听悟", e: "Tingwu", d: "阿里出品会议转写与音视频理解工具，自动生成纪要", u: "https://tingwu.aliyun.com/", c: ["#6366f1", "#22d3ee"] },
+      { n: "WPS AI",   e: "WPS AI", d: "WPS 办公套件 AI，文档、表格、PPT 智能创作", u: "https://ai.wps.cn/", c: ["#d8372f", "#ff8a00"] }
+    ]
+  }
+];
+
+const globalSubs = [
+  {
+    title: "对话助手", en: "Chat Assistants",
+    items: [
+      { n: "ChatGPT",      e: "ChatGPT",        d: "OpenAI 出品，全球最流行的 AI 助手，支持多模态与联网", u: "https://chatgpt.com/", c: ["#10a37f", "#1bd7a0"] },
+      { n: "Claude",       e: "Claude",         d: "Anthropic 出品，写作、代码与长文本理解能力卓越", u: "https://claude.ai/", c: ["#d97706", "#f59e0b"] },
+      { n: "Gemini",       e: "Gemini",         d: "Google 出品，多模态原生大模型，与谷歌生态深度整合", u: "https://gemini.google.com/", c: ["#4285f4", "#9b72cb"] },
+      { n: "Microsoft Copilot", e: "Copilot",   d: "微软出品，集成搜索引擎与办公生态的 AI 助手", u: "https://copilot.microsoft.com/", c: ["#2563eb", "#06b6d4"] },
+      { n: "Grok",         e: "Grok",            d: "xAI 出品，马斯克旗下，实时信息与个性化回答", u: "https://grok.com/", c: ["#374151", "#9ca3af"] },
+      { n: "Meta AI",      e: "Meta AI",         d: "Meta 出品，Llama 系列模型，社交生态 AI 助手", u: "https://www.meta.ai/", c: ["#0866ff", "#00d1f7"] },
+      { n: "Le Chat",      e: "Mistral Le Chat", d: "欧洲开源大模型 Mistral 出品，快速高效的对话助手", u: "https://chat.mistral.ai/", c: ["#f97316", "#facc15"] },
+      { n: "Character.AI", e: "Character AI",    d: "角色扮演与 AI 陪伴聊天，全球人气极高的虚拟角色平台", u: "https://character.ai/", c: ["#5c6ac4", "#8b5cf6"] },
+      { n: "Pi",           e: "Pi",              d: "Inflection 出品，主打情感陪伴的对话 AI", u: "https://pi.ai/", c: ["#4f46e5", "#a855f7"] }
+    ]
+  },
+  {
+    title: "AI 搜索 / 聚合", en: "AI Search & Aggregators",
+    items: [
+      { n: "Perplexity",  e: "Perplexity",    d: "AI 答案引擎，实时搜索并附引用来源，深度研究利器", u: "https://www.perplexity.ai/", c: ["#20b8cd", "#3b82f6"] },
+      { n: "You.com",     e: "You.com",       d: "个性化 AI 搜索引擎，可选用多种大模型回答", u: "https://you.com/", c: ["#f97316", "#ec4899"] },
+      { n: "Poe",         e: "Poe",           d: "Quora 出品，一个平台聚合使用多款前沿大模型", u: "https://poe.com/", c: ["#5b21b6", "#a855f7"] },
+      { n: "HuggingChat", e: "HuggingChat",   d: "Hugging Face 开源社区官方聊天，可尝试开源模型", u: "https://huggingface.co/chat/", c: ["#facc15", "#f59e0b"] }
+    ]
+  },
+  {
+    title: "AI 编程", en: "AI Coding",
+    items: [
+      { n: "Cursor",         e: "Cursor",          d: "AI 原生代码编辑器，Agent 式编程，开发效率神器", u: "https://cursor.com/", c: ["#111827", "#38bdf8"] },
+      { n: "Windsurf",       e: "Windsurf",        d: "Codeium 出品 AI IDE，协作式智能开发体验", u: "https://windsurf.com/", c: ["#0ea5e9", "#6366f1"] },
+      { n: "Replit",         e: "Replit",          d: "云端开发平台，浏览器里写代码，内置 AI 编程助手", u: "https://replit.com/", c: ["#f26207", "#ffb703"] },
+      { n: "v0",             e: "v0 by Vercel",    d: "Vercel 出品，输入需求即可生成精美前端界面", u: "https://v0.dev/", c: ["#18181b", "#8b5cf6"] },
+      { n: "Bolt.new",       e: "Bolt.new",        d: "对话式全栈应用生成，从想法到可部署网站", u: "https://bolt.new/", c: ["#a78bfa", "#6d28d9"] },
+      { n: "GitHub Copilot", e: "GitHub Copilot",  d: "GitHub 官方 AI 编程助手，代码补全与对话", u: "https://github.com/features/copilot", c: ["#24292f", "#6e40c9"] },
+      { n: "Codeium",        e: "Codeium",         d: "免费 AI 编程助手与 IDE 扩展，多语言支持", u: "https://codeium.com/", c: ["#38bdf8", "#6366f1"] }
+    ]
+  },
+  {
+    title: "AI 创作", en: "Create · Image · Video · Audio",
+    items: [
+      { n: "Midjourney",   e: "Midjourney",     d: "顶级 AI 图像生成工具，艺术感与质感业界标杆", u: "https://www.midjourney.com/", c: ["#1e293b", "#60a5fa"] },
+      { n: "Ideogram",     e: "Ideogram",       d: "文字渲染能力最强的 AI 图像生成，海报字体清晰", u: "https://ideogram.ai/", c: ["#ef4444", "#f97316"] },
+      { n: "Leonardo.Ai",  e: "Leonardo AI",    d: "游戏与设计向 AI 图像生成，风格模型丰富", u: "https://leonardo.ai/", c: ["#f97316", "#ef4444"] },
+      { n: "Stability AI", e: "Stable Diffusion", d: "Stable Diffusion 官方平台，开源图像生成", u: "https://stability.ai/", c: ["#7c3aed", "#c026d3"] },
+      { n: "Sora",         e: "Sora",           d: "OpenAI 视频生成模型，文生视频效果震撼", u: "https://sora.com/", c: ["#10a37f", "#0ea5e9"] },
+      { n: "Runway",       e: "Runway",         d: "专业级 AI 视频创作工具，好莱坞常用工作流", u: "https://runwayml.com/", c: ["#111827", "#ef4444"] },
+      { n: "Luma",         e: "Dream Machine",  d: "Luma 出品视频生成，电影感运镜与角色一致性强", u: "https://lumalabs.ai/dream-machine", c: ["#8b5cf6", "#ec4899"] },
+      { n: "Pika",         e: "Pika",           d: "轻量易用的 AI 视频生成，一键创意短片", u: "https://pika.art/", c: ["#0ea5e9", "#3b82f6"] },
+      { n: "Suno",         e: "Suno",           d: "AI 音乐生成标杆，输入歌词秒变完整歌曲", u: "https://suno.com/", c: ["#6366f1", "#a855f7"] },
+      { n: "Udio",         e: "Udio",           d: "高品质 AI 音乐创作，音色与制作水准出色", u: "https://www.udio.com/", c: ["#1d4ed8", "#60a5fa"] },
+      { n: "ElevenLabs",   e: "ElevenLabs",     d: "顶级 AI 语音合成，声音克隆与多语言朗读", u: "https://elevenlabs.io/", c: ["#111827", "#22d3ee"] }
+    ]
+  },
+  {
+    title: "效率办公", en: "Productivity",
+    items: [
+      { n: "NotebookLM", e: "NotebookLM", d: "Google 出品，上传资料即可学习、问答与生成播客", u: "https://notebooklm.google.com/", c: ["#f59e0b", "#dc2626"] },
+      { n: "Gamma",      e: "Gamma",      d: "AI 一键生成精美演示文稿、文档与网页", u: "https://gamma.app/", c: ["#db2777", "#f97316"] },
+      { n: "Canva AI",   e: "Canva",      d: "设计平台内置 AI 创作，海报、PPT、视频全搞定", u: "https://www.canva.com/", c: ["#00c4cc", "#7d2ae8"] },
+      { n: "QuillBot",   e: "QuillBot",   d: "AI 改写与润色神器，学术写作必备", u: "https://quillbot.com/", c: ["#10b981", "#0d9488"] },
+      { n: "Grammarly",  e: "Grammarly",  d: "AI 英语写作校对与润色，语法纠错精准", u: "https://www.grammarly.com/", c: ["#15c39a", "#2eaadc"] },
+      { n: "Notion AI",  e: "Notion AI",  d: "笔记知识库 + AI，写作、总结与问答一体化", u: "https://www.notion.com/", c: ["#111827", "#9ca3af"] }
+    ]
+  }
+];
+
+/* ================= 渲染 ================= */
+const $ = (s, el) => (el || document).querySelector(s);
+const $$ = (s, el) => Array.from((el || document).querySelectorAll(s));
+
+function letterOf(item) {
+  return (item.e || item.n).trim().charAt(0).toUpperCase();
+}
+
+function cardHTML(item, tag, delay) {
+  return `
+    <a class="card" href="${item.u}" target="_blank" rel="noopener"
+       data-search="${item.n} ${item.e} ${item.d} ${tag}" style="animation-delay:${delay}s">
+      <span class="icon" style="background:linear-gradient(135deg, ${item.c[0]}, ${item.c[1]})">${letterOf(item)}</span>
+      <div class="meta">
+        <div class="name">${item.n}<span class="alias">${item.e}</span></div>
+        <div class="desc">${item.d}</div>
+        <div class="foot">
+          <span class="tag">${tag}</span>
+          <span class="go">访问官网 ↗</span>
+        </div>
+      </div>
+    </a>`;
+}
+
+function renderSub(sub, container, delayBase) {
+  const group = document.createElement("div");
+  group.className = "sub-group";
+  const head = document.createElement("div");
+  head.className = "sub-head";
+  head.innerHTML = `<span class="dot"></span><h3>${sub.title}</h3><span class="en">${sub.en}</span>`;
+  const grid = document.createElement("div");
+  grid.className = "grid";
+  sub.items.forEach((item, i) => {
+    grid.insertAdjacentHTML("beforeend", cardHTML(item, sub.title, delayBase + i * 0.04));
+  });
+  group.appendChild(head);
+  group.appendChild(grid);
+  container.appendChild(group);
+}
+
+function countItems(subs) {
+  return subs.reduce((sum, s) => sum + s.items.length, 0);
+}
+
+function init() {
+  const chinaCount = countItems(chinaSubs);
+  const globalCount = countItems(globalSubs);
+  $("#totalCount").textContent = chinaCount + globalCount;
+  $("#count-china").textContent = chinaCount + " 个入口";
+  $("#count-global").textContent = globalCount + " 个入口";
+  chinaSubs.forEach((sub, i) => renderSub(sub, $("#china-subs"), i * 0.15));
+  globalSubs.forEach((sub, i) => renderSub(sub, $("#global-subs"), 0.2 + i * 0.15));  bindEvents();
+}
+
+function bindEvents() {
+  const input = $("#searchInput");
+  const cards = () => $$(".card");
+  const allGroups = () => $$(".sub-group");
+
+  function applyFilter(activeTag, keyword) {
+    const k = (keyword || "").trim().toLowerCase();
+    let visible = 0;
+    cards().forEach(card => {
+      const inRegion = activeTag === "all" || card.closest(".region").id === "region-" + activeTag;
+      const matched = !k || card.dataset.search.toLowerCase().indexOf(k) !== -1;
+      const show = inRegion && matched;
+      card.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+    /* 隐藏空的分组标题 */
+    allGroups().forEach(group => {
+      const hasVisible = $$(".card", group).some(c => c.style.display !== "none");
+      group.style.display = hasVisible ? "" : "none";
+    });
+    /* 隐藏空的区域 */
+    $$(".region").forEach(region => {
+      const hasVisible = $$(".card", region).some(c => c.style.display !== "none");
+      region.style.display = hasVisible ? "" : "none";
+      const head = $(".region-head", region);
+      if (head) head.style.display = hasVisible ? "" : "none";
+    });
+    $("#emptyTip").classList.toggle("visible", visible === 0);
+  }
+
+  input.addEventListener("input", () => {
+    const active = $(".quick-tag.active");
+    applyFilter(active ? active.dataset.filter : "all", input.value);
+  });
+
+  $$(".quick-tag").forEach(btn => {
+    btn.addEventListener("click", () => {
+      $$(".quick-tag").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      applyFilter(btn.dataset.filter, input.value);
+    });
+  });
+
+  const backTop = $("#backTop");
+  window.addEventListener("scroll", () => {
+    backTop.classList.toggle("show", window.scrollY > 600);
+  }, { passive: true });
+  backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+}
+
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
